@@ -29,5 +29,14 @@ def generate_launch_description():
             arguments=['-entity', 'robot', '-topic', 'robot_description'],
             output='screen'
         ),
+        Node(
+            package='robot_localization',
+            executable='ekf_node',
+            name='ekf_filter_node',
+            output='screen',
+            parameters=[
+                os.path.join(pkg_dir, 'config', 'ekf.yaml'),
+                {'use_sim_time': True}
+            ]
+        ),
     ])
-
