@@ -13,7 +13,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         ExecuteProcess(
-            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
+            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', '/home/aurelio/ros2_ws/cenario.world'],
             output='screen'
         ),
         Node(
@@ -21,7 +21,7 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            parameters=[{'robot_description': robot_desc}]
+            parameters=[{'robot_description': robot_desc, 'use_sim_time': True}]
         ),
         Node(
             package='gazebo_ros',
